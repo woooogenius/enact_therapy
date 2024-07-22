@@ -8,6 +8,9 @@ import './attachErrorHandler';
 
 import css from './App.module.less';
 import MainView from '../views/MainView';
+import KeyBoard from '../views/KeyBoard';
+import AudioTest from '../views/AudioTest';
+import AudioTest2 from '../views/AudioTest2';
 
 const App = kind({
 	name: 'App',
@@ -24,7 +27,9 @@ const App = kind({
 		return (
 			<Panels {...props}>
 				{/* <MainPanel /> */}
-				<MainView />
+				{/* <MainView /> */}
+				{/* <AudioTest /> */}
+				<AudioTest2 />
 			</Panels>
 
 		);

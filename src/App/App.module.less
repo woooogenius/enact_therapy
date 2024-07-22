@@ -67,8 +67,9 @@
 }
 
 .img_tit {
-	font-size: 50px;
+	font-size: 60px;
 	text-align: center;
+	margin-top: 20px;
 }
 
 .mode_img {
@@ -79,8 +80,8 @@
 }
 
 .img_box {
-	width: 370px;
-	height: 370px;
+	width: 500px;
+	height: 500px;
 	background-color: aliceblue;
 	border-radius: 50%;
 	display: flex;
@@ -183,19 +184,14 @@
 }
 
 .volume_close {
-	width: 55px;
-	height: 55px;
-	border-radius: 50%;
+	background-color: none;
 	border: 0;
-	background-color: white;
 	transition: .3s;
-	font-size: 30px;
 	cursor: pointer;
+	margin-top: -10px;
 }
 
-.volume_close:hover {
-	box-shadow: 0px 0px 5px 5px rgba(254, 254, 254, 0.7);
-}
+
 
 .volume_flex {
 	font-size: 40px;
@@ -216,4 +212,67 @@
 	justify-content: center;
 	align-items: center;
 	margin-top: 150px;
+}
+
+.input {
+	width: 500px;
+	height: 100px;
+}
+
+//wave animation
+
+.bar_cont {
+	margin-top: 100px;
+}
+
+.waveformAnimation {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	margin: 0 auto;
+	height: 250px;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.bar {
+	width: 15px;
+	height: 25%;
+	background: rgba(255, 255, 255, 0.8);
+	animation: bounce 2s ease-in-out infinite;
+	margin-right: 30px;
+}
+
+.bar:nth-child(2n) {
+	animation-delay: -0.8s;
+	background-color: palevioletred;
+}
+
+.bar:nth-child(3n) {
+	animation-delay: -0.6s;
+	background-color: steelblue;
+}
+
+.bar:nth-child(4n) {
+	animation-delay: -0.4s;
+	background-color: burlywood;
+}
+
+.bar:nth-child(5n) {
+	animation-delay: -0.2s;
+}
+
+@keyframes bounce {
+
+	0%,
+	100% {
+		transform: scaleY(1);
+	}
+
+	30% {
+		transform: scaleY(3);
+	}
+
+	50% {
+		transform: scaleY(2);
+	}
 }

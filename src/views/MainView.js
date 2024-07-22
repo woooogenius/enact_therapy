@@ -10,23 +10,32 @@ import axios from "axios";
 import MediaPlayer from '@enact/sandstone/MediaPlayer';
 import { MediaSlider } from '@enact/sandstone/MediaPlayer'
 import keyboard from '@enact/webos/keyboard';
+import Input, { InputFieldDecorator } from '@enact/sandstone/Input';
 
 
 
 const MainView = (props) => {
 
-    const keyboardShow = () => {
-        keyboard.isShowing(true);
-    }
+    // const keyboardShow = () => {
+    //     keyboard.isShowing(true);
+    // }
+    const keyfun = (event) => {
+        window.alert(event.keyCode);
+    };
+    const sounds = [
+        "music/LGRest_06_MusicPN(mix).wav",
+        "music/LGRest_05_BB432Only.wav",
+    ]
 
 
-    const audioRef = useRef("music/LGRest_06_MusicPN(mix).wav");
+
+    const audioRef = useRef(null);
     const [playing, setPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(0.5);
 
-    const audioRef2 = useRef("music/LGRest_05_BB432Only.wav");
+    const audioRef2 = useRef(null);
     const [playing2, setPlaying2] = useState(false);
     const [currentTime2, setCurrentTime2] = useState(0);
     const [duration2, setDuration2] = useState(0);
@@ -54,7 +63,7 @@ const MainView = (props) => {
                     }
                 },
                 onFailure: (err) => {
-                    console.error('voice service not available.')
+                    console.error(err)
                 },
             });
         }
@@ -81,12 +90,12 @@ const MainView = (props) => {
         setIsPlayingMode(mode);
         setShowPopup(true);
         onClickStop();
-        setPlaying(true);
-        setPlaying2(true);
 
         try {
             await audioRef.current.play();
             await audioRef2.current.play();
+            setPlaying(true);
+            setPlaying2(true);
 
         } catch (error) {
             console.log(error);
@@ -237,7 +246,6 @@ const MainView = (props) => {
             <Panel>
                 <Header type="wizard" title="AI Sound Therapy" style={{ padding: '0px 0px' }} />
             </Panel>
-
 
 
             <Popup open={showPopup}>
@@ -454,16 +462,24 @@ const MainView = (props) => {
 
             </div>
 
-            <div className={css.stt}>
+            {/* <div className={css.stt}>
                 <Button size="small" onClick={handleVoiceInput}>Voice Input</Button>
                 <div>
                     <p>Recognized Text:{recognizedText}</p>
                 </div>
-            </div>
+            </div> */}
 
-            <Button size="small" onClick={keyboardShow} >
+            {/* <Button size="small" onClick={keyboardShow} >
                 key
-            </Button>
+            </Button> */}
+
+            <form>
+                <Input className={css.input} onChange={keyfun} onFocus={handleVoiceInput} value={'test'} />
+            </form>
+
+
+
+
 
 
 
