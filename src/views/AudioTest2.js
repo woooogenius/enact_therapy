@@ -32,6 +32,9 @@ const AudioTest2 = () => {
 
     const [currentTime, setCurrentTime] = useState(0);
 
+    const [audioFile, setAudioFile] = useState("music/LGRest_06_MusicPN(mix).wav");
+    const [audioFile2, setAudioFile2] = useState("music/LGRest_05_BB432Only.wav");
+
 
     useEffect(() => {
         // 오디오 컨텍스트 생성
@@ -45,8 +48,9 @@ const AudioTest2 = () => {
             bufferRef.current = audioBuffer;
         };
 
-        loadAudioFile("music/LGRest_06_MusicPN(mix).wav", audioBuffer1);
-        loadAudioFile("music/LGRest_05_BB432Only.wav", audioBuffer2);
+        loadAudioFile(audioFile, audioBuffer1);
+        loadAudioFile(audioFile2, audioBuffer2);
+        // loadAudioFile("https://sample-videos.com/audio/mp3/wave.mp3", audioBuffer2);
 
         return () => {
             // 컴포넌트가 언마운트될 때 오디오 컨텍스트를 종료
@@ -66,8 +70,11 @@ const AudioTest2 = () => {
         return () => clearInterval(interval);
     }, [isPlaying, startTime])
 
-    const playBoth = (mode) => {
+    const playBoth = async (mode) => {
         stopBoth();
+        setMode(mode);
+        postCommandProcessing();
+
         if (audioBuffer1.current && audioBuffer2.current) {
             // 일시정지된 시간부터 재생 시작
             let offset = pauseTime - startTime;
@@ -95,7 +102,6 @@ const AudioTest2 = () => {
 
             setStartTime(audioContext.current.currentTime - offset);
             setIsPlaying(true);
-            setMode(mode);
             setShowModePop(true);
             setTimeout(() => {
                 setShowModePop(false);
@@ -170,7 +176,7 @@ const AudioTest2 = () => {
                 setIsPlaying(false);
             };
 
-            setMode(mode); // Ensuring mode is maintained
+            setMode(mode);
         }
     };
 
@@ -189,9 +195,6 @@ const AudioTest2 = () => {
 
         }
     };
-
-
-
 
     const handleVolumeChange1 = (event) => {
         const value = event.value;
@@ -212,11 +215,49 @@ const AudioTest2 = () => {
         return `${Math.round(value * 100)}`;
     };
 
+
+    async function postCommandProcessing() {
+        try {
+            const response = await fetch('http://13.124.72.117:10001/api/command', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: "user100",
+                    therapyCategory: mode,
+                    speech: "SPEECH_COMMAND",
+                })
+            });
+
+            if (!response.ok) {
+                console.log('post command err')
+            }
+
+            const data = await response.json();
+            setAudioFile(data.soundFile1)
+            setAudioFile2(data.soundFile2)
+            console.log(data);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+
+
     return (
         <Panel>
             <Image src='images/light.jpg' style={{ width: '100%', height: '100%', position: 'absolute', top: '0px', left: '0', zIndex: '-1' }} />
 
-            <Header title={'AI Sound Therapy'} />
+            {/* <Header title={'AI Sound Therapy'} /> */}
+
+            <div className={css.head_title}>
+                <h1 className={css.head_tit}>AI Sound Therapy</h1>
+                <button className={css.stt_btn}>
+                    <Icon size={'small'}>voice</Icon>
+                </button>
+            </div>
 
             <Popup open={showModePop}>
                 <div className={css.popup}>
@@ -285,8 +326,8 @@ const AudioTest2 = () => {
                         <div className={css.img_tit}>Sleep Mode</div>
                     </div>
 
-                    <div onClick={() => playBoth('MEDITATION')} className={`${css.mode_box} ${isPlaying && mode === 'MEDITATION' ? css.pulseAnimation : ''}`}>
-                        <div className={css.img_box}>
+                    <div onClick={() => playBoth('MEDITATION')} className={`${css.mode_box} ${isPlaying && mode === 'SLEEP' ? css.pulseAnimation : ''}`}>
+                        <div className={`${css.img_box} `}>
                             <Image src='images/meditation_mode.png' className={css.mode_img} />
                         </div>
                         <div className={css.img_tit}>Meditaion Mode</div>
