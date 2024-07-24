@@ -9,10 +9,10 @@ import Slider from '@enact/sandstone/Slider';
 import css from '../App/App.module.less'
 import Image from '@enact/sandstone/Image';
 import Icon from '@enact/sandstone/Icon';
-import { Header, Panel } from '@enact/sandstone/Panels';
+import { Panel } from '@enact/sandstone/Panels';
 import Popup from '@enact/sandstone/Popup';
-import TabLayout, { Tab } from '@enact/sandstone/TabLayout';
 import { useNavigate } from 'react-router-dom';
+import Input from '@enact/sandstone/Input';
 
 
 const AudioPlayer = () => {
@@ -34,6 +34,7 @@ const AudioPlayer = () => {
     const [showModePop, setShowModePop] = useState(false);
     const [showVolumePop, setShowVolumePop] = useState(false);
     const [showMenuPop, setShowMenuPop] = useState(false);
+    const [showViocePop, setShowVoicePop] = useState(false);
 
     const [currentTime, setCurrentTime] = useState(0);
 
@@ -269,7 +270,7 @@ const AudioPlayer = () => {
             <Image src='images/light.jpg' style={{ width: '100%', height: '100%', position: 'absolute', top: '0px', left: '0', zIndex: '-1' }} />
 
             {/* <Header title={'AI Sound Therapy'} /> */}
-
+            {/* 
             <div className={css.head_title}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <div onClick={() => setShowMenuPop(true)} className={css.menu_btn}>
@@ -280,8 +281,16 @@ const AudioPlayer = () => {
                 <button className={css.stt_btn}>
                     <Icon size={'small'}>voice</Icon>
                 </button>
+            </div> */}
+            <div className={css.head_title}>
+                <h3 className={css.head_tit}>AI Sound Therapy</h3>
+
+                <div onClick={() => setShowMenuPop(true)} className={css.menu_btn}>
+                    <Icon>list</Icon>
+                </div>
             </div>
 
+            {/* menu popup */}
             <Popup position='center' open={showMenuPop} style={{ width: '450px', height: '450px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
                 <div style={{ position: 'absolute', top: '0', right: '-20px' }}>
                     <Icon onClick={() => setShowMenuPop(false)} style={{ width: '80px', height: '80px', fontSize: '30px', cursor: 'pointer' }} size={'tiny'}>closex</Icon>
@@ -293,28 +302,42 @@ const AudioPlayer = () => {
                 </div>
             </Popup>
 
+            {/* stt popup */}
+            <Popup open={showViocePop} position='center' style={{ width: '800px', height: '280px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+                <div style={{ position: 'absolute', top: '0', right: '-20px' }}>
+                    <Icon onClick={() => setShowVoicePop(false)} style={{ width: '80px', height: '80px', fontSize: '30px', cursor: 'pointer' }} size={'tiny'}>closex</Icon>
+                </div>
+                <div className={css.stt_pop}>
+                    <Input type='text' placeholder='Voice Input' style={{ width: '500px', height: '70px', fontSize: '50px' }} />
+                    <Button size='small' style={{ height: '70px', width: '150px' }}>전송</Button>
+                </div>
+
+            </Popup>
+
             <Popup open={showModePop}>
                 <div className={css.popup}>
                     {mode}
                 </div>
             </Popup>
 
-
-            <Popup open={showVolumePop} style={{ width: '50%', height: '250px', margin: '50px auto' }}>
+            {/* volume popup */}
+            <Popup open={showVolumePop} position='center' style={{ width: '40%', height: '280px', position: 'relative' }}>
+                <div style={{ position: 'absolute', top: '0', right: '-20px' }}>
+                    <Icon onClick={() => setShowVolumePop(false)} style={{ width: '80px', height: '80px', fontSize: '30px', cursor: 'pointer' }} size={'tiny'}>closex</Icon>
+                </div>
                 <div className={css.volume_pop}>
 
-                    <div className={css.volume_tit}>
-                        <div>Volume</div>
+                    {/* <div className={css.volume_tit}>
                         <div onClick={() => setShowVolumePop(false)} className={css.volume_close}><Icon size='tiny'>closex</Icon></div>
-                    </div>
+                    </div> */}
                     <div className={css.blank}></div>
 
                     <div className={css.volume_box}>
                         <div className={css.volume_flex}>
-                            <div>Main</div>
+                            <div >Main</div>
                             <div className={css.slider}>
                                 <Slider min={0} max={1} step={0.01} defaultValue={volume1} onChange={handleVolumeChange1} tooltip={() => (
-                                    <div style={{ position: 'absolute', bottom: '-15px', left: '15px' }}>
+                                    <div style={{ position: 'absolute', bottom: '-20px', left: '15px' }}>
                                         {formatTooltip(volume1)}
                                     </div>
                                 )} />
@@ -325,7 +348,7 @@ const AudioPlayer = () => {
                             <div>Binaural</div>
                             <div className={css.slider}>
                                 <Slider min={0} max={1} step={0.01} defaultValue={volume2} onChange={handleVolumeChange2} tooltip={() => (
-                                    <div style={{ position: 'absolute', bottom: '-15px', left: '15px' }}>
+                                    <div style={{ position: 'absolute', bottom: '-20px', left: '15px' }}>
                                         {formatTooltip(volume2)}
                                     </div>
                                 )} />
@@ -388,9 +411,15 @@ const AudioPlayer = () => {
 
                         <div className={css.bottomTextFlex}>
                             <h2 >{mode ? mode : 'Therapy Mode'}</h2>
-                            <Button size="small" className={css.volumeButton} onClick={() => setShowVolumePop(true)}>
-                                Volume
-                            </Button>
+                            <div>
+                                <Button size="small" className={css.volumeButton} onClick={() => setShowVoicePop(true)}>
+                                    <Icon size={'small'}>voice</Icon>
+                                </Button>
+                                <Button size="small" className={css.volumeButton} onClick={() => setShowVolumePop(true)}>
+                                    <Icon size={'small'}>sound</Icon>
+                                </Button>
+                            </div>
+
                         </div>
 
                         <div className={css.main_slider}>
@@ -440,7 +469,7 @@ const AudioPlayer = () => {
 
 
             </div>
-        </Panel>
+        </Panel >
 
     );
 };
