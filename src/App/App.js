@@ -9,8 +9,9 @@ import './attachErrorHandler';
 import css from './App.module.less';
 import MainView from '../views/MainView';
 import KeyBoard from '../views/KeyBoard';
-import AudioTest from '../views/AudioTest';
-import AudioTest2 from '../views/AudioTest2';
+import Dashboard from '../views/Dashboard';
+import AudioPlayer from '../views/AudioPlayer';
+import { Route, Routes } from 'react-router-dom';
 
 const App = kind({
 	name: 'App',
@@ -20,16 +21,14 @@ const App = kind({
 		className: 'app'
 	},
 
-	render: function (props) {
-		// <Panels {...props} className={css.App}>
-		// 	<MainPanel />
-		// </Panels>
+	render: (props) => {
+
 		return (
 			<Panels {...props}>
-				{/* <MainPanel /> */}
-				{/* <MainView /> */}
-				{/* <AudioTest /> */}
-				<AudioTest2 />
+				<Routes>
+					<Route path='/' element={<AudioPlayer />} />
+					<Route path='/dashboard' element={<Dashboard />} />
+				</Routes>
 			</Panels>
 
 		);

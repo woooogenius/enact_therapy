@@ -49,25 +49,25 @@ const MainView = (props) => {
 
     //stt
     const [recognizedText, setRecognizedText] = useState('');
-    const handleVoiceInput = () => {
-        if (window.webOS && window.webOS.service) {
-            window.webOS.service.webOS.service.request('luna://com.webos.service.voice', {
-                method: 'start',
-                parameters: {
-                    subscribe: true,
-                    mode: 'continuous'
-                },
-                onSuccess: (res) => {
-                    if (res.event === 'final') {
-                        setRecognizedText(res.text);
-                    }
-                },
-                onFailure: (err) => {
-                    console.error(err)
-                },
-            });
-        }
-    }
+    // const handleVoiceInput = () => {
+    //     if (window.webOS && window.webOS.service) {
+    //         window.webOS.service.webOS.service.request('luna://com.webos.service.voice', {
+    //             method: 'start',
+    //             parameters: {
+    //                 subscribe: true,
+    //                 mode: 'continuous'
+    //             },
+    //             onSuccess: (res) => {
+    //                 if (res.event === 'final') {
+    //                     setRecognizedText(res.text);
+    //                 }
+    //             },
+    //             onFailure: (err) => {
+    //                 console.error(err)
+    //             },
+    //         });
+    //     }
+    // }
 
 
     // const playMode = (mode) => {
@@ -474,7 +474,7 @@ const MainView = (props) => {
             </Button> */}
 
             <form>
-                <Input className={css.input} onChange={keyfun} onFocus={handleVoiceInput} value={'test'} />
+                {/* <Input className={css.input} onChange={keyfun} onFocus={handleVoiceInput} value={'test'} /> */}
             </form>
 
 

@@ -11,7 +11,11 @@ import Image from '@enact/sandstone/Image';
 import Icon from '@enact/sandstone/Icon';
 import { Header, Panel } from '@enact/sandstone/Panels';
 import Popup from '@enact/sandstone/Popup';
-const AudioTest2 = () => {
+import TabLayout, { Tab } from '@enact/sandstone/TabLayout';
+import { useNavigate } from 'react-router-dom';
+
+
+const AudioPlayer = () => {
     const audioContext = useRef(null);
     const audioBuffer1 = useRef(null);
     const audioBuffer2 = useRef(null);
@@ -29,6 +33,7 @@ const AudioTest2 = () => {
 
     const [showModePop, setShowModePop] = useState(false);
     const [showVolumePop, setShowVolumePop] = useState(false);
+    const [showMenuPop, setShowMenuPop] = useState(false);
 
     const [currentTime, setCurrentTime] = useState(0);
 
@@ -58,8 +63,12 @@ const AudioTest2 = () => {
                 audioContext.current.close();
             }
         };
-    }, []);
 
+
+    }, [audioFile, audioFile2]);
+
+
+    //재생시간 업데이트 
     useEffect(() => {
         let interval;
         if (isPlaying) {
@@ -70,10 +79,12 @@ const AudioTest2 = () => {
         return () => clearInterval(interval);
     }, [isPlaying, startTime])
 
-    const playBoth = async (mode) => {
+
+
+    const playBoth = (mode) => {
         stopBoth();
+        // postCommandProcessing();
         setMode(mode);
-        postCommandProcessing();
 
         if (audioBuffer1.current && audioBuffer2.current) {
             // 일시정지된 시간부터 재생 시작
@@ -106,15 +117,17 @@ const AudioTest2 = () => {
             setTimeout(() => {
                 setShowModePop(false);
             }, 1000);
-            source1.current.onended = () => {
+
+            //음원이 끝났을때
+            const handleEnded = () => {
+                if (source1.current) source1.current.onended = null;
+                if (source2.current) source2.current.onended = null;
                 stopBoth();
-                setIsPlaying(false)
+                setIsPlaying(false);
             };
 
-            source2.current.onended = () => {
-                stopBoth();
-                setIsPlaying(false)
-            };
+            source1.current.onended = handleEnded;
+            source2.current.onended = handleEnded;
         }
 
     };
@@ -183,17 +196,21 @@ const AudioTest2 = () => {
 
 
     const stopBoth = () => {
-        if (source1.current && source2.current) {
+        if (source1.current) {
             source1.current.stop(0);
-            source2.current.stop(0);
-
-            setPauseTime(0);
-            setStartTime(0);
-            setIsPlaying(false);
-            setMode('');
-            setCurrentTime(0);
-
+            source1.current.onended = null;
         }
+        if (source2.current) {
+            source2.current.stop(0);
+            source2.current.onended = null;
+        }
+
+        setPauseTime(0);
+        setStartTime(0);
+        setIsPlaying(false);
+        setMode('');
+        setCurrentTime(0);
+
     };
 
     const handleVolumeChange1 = (event) => {
@@ -216,34 +233,35 @@ const AudioTest2 = () => {
     };
 
 
-    async function postCommandProcessing() {
-        try {
-            const response = await fetch('http://13.124.72.117:10001/api/command', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    userId: "user100",
-                    therapyCategory: mode,
-                    speech: "SPEECH_COMMAND",
-                })
-            });
+    // async function postCommandProcessing() {
+    //     try {
+    //         const response = await fetch('http://13.124.72.117:10001/api/command', {
+    //             method: 'POST',
+    //             credentials: 'include',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 userId: "user100",
+    //                 therapyCategory: mode,
+    //                 speech: "SPEECH_COMMAND",
+    //             })
+    //         });
 
-            if (!response.ok) {
-                console.log('post command err')
-            }
+    //         if (!response.ok) {
+    //             console.log('post command err')
+    //         }
 
-            const data = await response.json();
-            setAudioFile(data.soundFile1)
-            setAudioFile2(data.soundFile2)
-            console.log(data);
-        } catch (e) {
-            console.error(e);
-        }
-    }
+    //         const data = await response.json();
+    //         setAudioFile(data.soundFile1)
+    //         setAudioFile2(data.soundFile2)
+    //         console.log(data);
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // }
 
+    const navigate = useNavigate();
 
 
     return (
@@ -253,11 +271,27 @@ const AudioTest2 = () => {
             {/* <Header title={'AI Sound Therapy'} /> */}
 
             <div className={css.head_title}>
-                <h1 className={css.head_tit}>AI Sound Therapy</h1>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div onClick={() => setShowMenuPop(true)} className={css.menu_btn}>
+                        <Icon>list</Icon>
+                    </div>
+                </div>
+
                 <button className={css.stt_btn}>
                     <Icon size={'small'}>voice</Icon>
                 </button>
             </div>
+
+            <Popup position='center' open={showMenuPop} style={{ width: '450px', height: '450px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+                <div style={{ position: 'absolute', top: '0', right: '-20px' }}>
+                    <Icon onClick={() => setShowMenuPop(false)} style={{ width: '80px', height: '80px', fontSize: '30px', cursor: 'pointer' }} size={'tiny'}>closex</Icon>
+                </div>
+                <div className={css.menu_flex}>
+                    <Button onClick={() => navigate('/')} size='small' style={{ width: '300px' }}>Home</Button>
+                    <Button onClick={() => navigate('/dashboard')} size='small' style={{ width: '300px', marginTop: '30px' }}>Dashboard</Button>
+                    <Button size='small' style={{ width: '300px', marginTop: '30px' }}>Account</Button>
+                </div>
+            </Popup>
 
             <Popup open={showModePop}>
                 <div className={css.popup}>
@@ -303,6 +337,7 @@ const AudioTest2 = () => {
             </Popup>
 
 
+
             <div className={css.mainView}>
                 <div className={css.img_flex}>
                     <div onClick={() => playBoth('STRESS')} className={`${css.mode_box} ${isPlaying && mode === 'STRESS' ? css.pulseAnimation : ''}`}>
@@ -326,7 +361,7 @@ const AudioTest2 = () => {
                         <div className={css.img_tit}>Sleep Mode</div>
                     </div>
 
-                    <div onClick={() => playBoth('MEDITATION')} className={`${css.mode_box} ${isPlaying && mode === 'SLEEP' ? css.pulseAnimation : ''}`}>
+                    <div onClick={() => playBoth('MEDITATION')} className={`${css.mode_box} ${isPlaying && mode === 'MEDITATION' ? css.pulseAnimation : ''}`}>
                         <div className={`${css.img_box} `}>
                             <Image src='images/meditation_mode.png' className={css.mode_img} />
                         </div>
@@ -410,4 +445,4 @@ const AudioTest2 = () => {
     );
 };
 
-export default AudioTest2;
+export default AudioPlayer;
