@@ -81,10 +81,20 @@ const AudioPlayer = () => {
     }, [isPlaying, startTime])
 
 
+    // const getVolumeInerval = setInterval(() => {
+    //     getVolume('user100')
+    // }, 60000);
+
 
     const playBoth = (mode) => {
         stopBoth();
-        // postCommandProcessing();
+
+        // postCommandProcessing('user100', mode, null);
+        // getVolumeInerval();
+
+
+
+
         setMode(mode);
 
         if (audioBuffer1.current && audioBuffer2.current) {
@@ -212,6 +222,10 @@ const AudioPlayer = () => {
         setMode('');
         setCurrentTime(0);
 
+
+        //getvolume 정지
+        // clearInterval(getVolumeInerval);
+
     };
 
     const handleVolumeChange1 = (event) => {
@@ -233,8 +247,8 @@ const AudioPlayer = () => {
         return `${Math.round(value * 100)}`;
     };
 
-
-    // async function postCommandProcessing() {
+    //commandProcessing api
+    // async function postCommandProcessing(userId, therapyMode, speechWord) {
     //     try {
     //         const response = await fetch('http://13.124.72.117:10001/api/command', {
     //             method: 'POST',
@@ -243,9 +257,9 @@ const AudioPlayer = () => {
     //                 'Content-Type': 'application/json'
     //             },
     //             body: JSON.stringify({
-    //                 userId: "user100",
-    //                 therapyCategory: mode,
-    //                 speech: "SPEECH_COMMAND",
+    //                 userId: userId,
+    //                 therapyCategory: therapyMode,
+    //                 speech: speechWord,
     //             })
     //         });
 
@@ -259,6 +273,31 @@ const AudioPlayer = () => {
     //         console.log(data);
     //     } catch (e) {
     //         console.error(e);
+    //     }
+    // }
+
+
+
+    //get volume api
+    // async function getVolume(userId) {
+    //     try {
+    //         const response = await fetch(`http://13.124.72.117:10001/api/volume?userId=${userId}`, {
+    //             method: 'GET',
+    //             credentials: 'include',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+
+
+    //         })
+    //         if (!response.ok) {
+    //             console.log('get volume api err')
+    //         }
+    //         const data = await response.json();
+    //         setVolume1(data.volumeLevel1);
+    //         setVolume2(data.volumeLevel2);
+    //     } catch (e) {
+    //         console.log(e)
     //     }
     // }
 
