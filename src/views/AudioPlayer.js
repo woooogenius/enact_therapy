@@ -301,12 +301,12 @@ const AudioPlayer = () => {
     //     }
     // }
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
 
     return (
         <Panel>
-            <Image src='images/light.jpg' style={{ width: '100%', height: '100%', position: 'absolute', top: '0px', left: '0', zIndex: '-1' }} />
+            {/* <Image src='images/light.jpg' style={{ width: '100%', height: '100%', position: 'absolute', top: '0px', left: '0', zIndex: '-1' }} /> */}
 
             {/* <Header title={'AI Sound Therapy'} /> */}
             {/* 
@@ -324,13 +324,13 @@ const AudioPlayer = () => {
             <div className={css.head_title}>
                 <h3 className={css.head_tit}>AI Sound Therapy</h3>
 
-                <div onClick={() => setShowMenuPop(true)} className={css.menu_btn}>
+                {/* <div onClick={() => setShowMenuPop(true)} className={css.menu_btn}>
                     <Icon>list</Icon>
-                </div>
+                </div> */}
             </div>
 
             {/* menu popup */}
-            <Popup position='center' open={showMenuPop} style={{ width: '450px', height: '450px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+            {/* <Popup position='center' open={showMenuPop} style={{ width: '450px', height: '450px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
                 <div style={{ position: 'absolute', top: '0', right: '-20px' }}>
                     <Icon onClick={() => setShowMenuPop(false)} style={{ width: '80px', height: '80px', fontSize: '30px', cursor: 'pointer' }} size={'tiny'}>closex</Icon>
                 </div>
@@ -339,7 +339,7 @@ const AudioPlayer = () => {
                     <Button onClick={() => navigate('/dashboard')} size='small' style={{ width: '300px', marginTop: '30px' }}>Dashboard</Button>
                     <Button size='small' style={{ width: '300px', marginTop: '30px' }}>Account</Button>
                 </div>
-            </Popup>
+            </Popup> */}
 
             {/* stt popup */}
             <Popup open={showViocePop} position='center' style={{ width: '800px', height: '280px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>

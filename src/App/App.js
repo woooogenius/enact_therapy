@@ -12,7 +12,7 @@ import KeyBoard from '../views/KeyBoard';
 import Dashboard from '../views/Dashboard';
 import AudioPlayer from '../views/AudioPlayer';
 import { Route, Routes } from 'react-router-dom';
-
+import Routable from '@enact/ui/Routable';
 const App = kind({
 	name: 'App',
 
@@ -25,10 +25,11 @@ const App = kind({
 
 		return (
 			<Panels {...props}>
-				<Routes>
-					<Route path='/' element={<AudioPlayer />} />
+				<MainPanel />
+				{/* <Routes>
+					<Route path='/' element={<MainPanel />} />
 					<Route path='/dashboard' element={<Dashboard />} />
-				</Routes>
+				</Routes> */}
 			</Panels>
 
 		);

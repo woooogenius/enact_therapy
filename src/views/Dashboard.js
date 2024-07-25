@@ -69,19 +69,19 @@ const Dashboard = (props) => {
             },
         },
     };
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <Panel {...props}>
             <div className={css.head_title}>
                 <h1 className={css.head_tit}>DashBoard</h1>
 
-                <div onClick={() => setShowMenuPop(true)} className={css.menu_btn}>
+                {/* <div onClick={() => setShowMenuPop(true)} className={css.menu_btn}>
                     <Icon>list</Icon>
-                </div>
+                </div> */}
             </div>
 
-            <Popup position='center' open={showMenuPop} style={{ width: '450px', height: '450px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+            {/* <Popup position='center' open={showMenuPop} style={{ width: '450px', height: '450px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
                 <div style={{ position: 'absolute', top: '0', right: '-20px' }}>
                     <Icon onClick={() => setShowMenuPop(false)} style={{ width: '80px', height: '80px', fontSize: '30px', cursor: 'pointer' }} size={'tiny'}>closex</Icon>
                 </div>
@@ -90,7 +90,7 @@ const Dashboard = (props) => {
                     <Button onClick={() => navigate('/dashboard')} size='small' style={{ width: '300px', marginTop: '30px' }}>Dashboard</Button>
                     <Button size='small' style={{ width: '300px', marginTop: '30px' }}>Account</Button>
                 </div>
-            </Popup>
+            </Popup> */}
 
             <div className={css.chart_cont}>
                 <div className={css.chart}>

@@ -3,12 +3,9 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
 
 const appElement = (
-	<BrowserRouter>
-		<App />
-	</BrowserRouter>
+	<App />
 );
 
 // In a browser environment, render instead of exporting
@@ -19,6 +16,7 @@ if (typeof window !== 'undefined') {
 		createRoot(document.getElementById('root')).render(appElement);
 	}
 }
+
 
 export default appElement;
 
