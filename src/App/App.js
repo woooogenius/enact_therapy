@@ -26,8 +26,8 @@ const App = kind({
 
 		return (
 			<Panels {...props}>
-				{/* <MainPanel /> */}
-				<Login />
+				<MainPanel />
+				{/* <Login /> */}
 				{/* <Routes>
 					<Route path='/' element={<MainPanel />} />
 					<Route path='/dashboard' element={<Dashboard />} />
