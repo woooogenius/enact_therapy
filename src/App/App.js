@@ -13,6 +13,7 @@ import Dashboard from '../views/Dashboard';
 import AudioPlayer from '../views/AudioPlayer';
 import { Route, Routes } from 'react-router-dom';
 import Routable from '@enact/ui/Routable';
+import Login from '../views/Login';
 const App = kind({
 	name: 'App',
 
@@ -25,7 +26,8 @@ const App = kind({
 
 		return (
 			<Panels {...props}>
-				<MainPanel />
+				{/* <MainPanel /> */}
+				<Login />
 				{/* <Routes>
 					<Route path='/' element={<MainPanel />} />
 					<Route path='/dashboard' element={<Dashboard />} />

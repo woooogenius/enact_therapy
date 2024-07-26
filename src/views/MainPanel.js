@@ -12,6 +12,7 @@ import Account from './Account';
 const MainPanel = () => {
 	const [currentStep, setCurrentStep] = useState(0);
 
+
 	const steps = [
 		<div style={{ width: '100%', height: '100%', }}>
 			<AudioPlayer />

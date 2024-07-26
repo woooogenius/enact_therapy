@@ -42,7 +42,24 @@ const AudioPlayer = () => {
     const [audioFile2, setAudioFile2] = useState("music/LGRest_05_BB432Only.wav");
 
 
+
+    //login localstorage
+
+    // window.localStorage.setItem('userId', 'admin');
+    // const userIdValue = window.localStorage.getItem('userId');
+    // console.log(userIdValue);
+
+    //데이터 삭제
+    // window.localStorage.removeItem('userId');
+
+    //로컬스토리지 비우기
+    // localStorage.claer();
+
+
+
+
     useEffect(() => {
+
         // 오디오 컨텍스트 생성
         audioContext.current = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -347,6 +364,8 @@ const AudioPlayer = () => {
                     {mode}
                 </div>
             </Popup>
+
+
 
             {/* volume popup */}
             <Popup open={showVolumePop} position='center' style={{ width: '40%', height: '280px', position: 'relative' }}>
