@@ -309,18 +309,7 @@ const AudioPlayer = () => {
             {/* <Image src='images/light.jpg' style={{ width: '100%', height: '100%', position: 'absolute', top: '0px', left: '0', zIndex: '-1' }} /> */}
 
             {/* <Header title={'AI Sound Therapy'} /> */}
-            {/* 
-            <div className={css.head_title}>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <div onClick={() => setShowMenuPop(true)} className={css.menu_btn}>
-                        <Icon>list</Icon>
-                    </div>
-                </div>
 
-                <button className={css.stt_btn}>
-                    <Icon size={'small'}>voice</Icon>
-                </button>
-            </div> */}
             <div className={css.head_title}>
                 <h3 className={css.head_tit}>AI Sound Therapy</h3>
 

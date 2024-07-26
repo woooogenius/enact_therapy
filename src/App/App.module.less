@@ -3,6 +3,14 @@
 	padding: 0;
 }
 
+* {
+	box-sizing: border-box;
+}
+
+li {
+	list-style: none;
+}
+
 .mainView {
 	padding: 0px 150px;
 	display: flex;
@@ -360,15 +368,159 @@
 ///////////////////////DASHBOARD/////////////////////////////////
 
 .chart_cont {
+	margin-top: 100px;
+	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	flex-wrap: wrap;
 	align-items: center;
+	justify-content: center;
+}
+
+.chart_item {
+	width: calc(50% - 50px);
+	height: 700px;
+	margin-right: 50px;
+	margin-bottom: 50px;
+}
+
+.chart_item:nth-child(2),
+.chart_item:nth-child(4) {
+	margin-right: 0;
+}
+
+.chart_item:nth-child(3),
+.chart_item:nth-child(4) {
+	margin-bottom: 0;
 }
 
 .chart {
-	width: 1000px;
-	height: 500px;
+	width: 100%;
+	height: 100%;
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+}
+
+.dash_grid {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.grid_item {
+	width: calc(50% - 10px);
+	height: 340px;
+	border-radius: 10px;
+}
+
+.grid_item:nth-child(1),
+.grid_item:nth-child(3) {
+	margin-right: 20px;
+}
+
+.grid_item:nth-child(1) {
+	background: rgba(123, 86, 167, 0.5);
+}
+
+.grid_item:nth-child(2) {
+	background: rgba(71, 49, 137, 0.5);
+}
+
+.grid_item:nth-child(3) {
+	background: rgba(58, 71, 137, 0.5);
+}
+
+.grid_item:nth-child(4) {
+	background: rgba(254, 116, 19, 0.5);
+}
+
+
+.grid_item:nth-child(1),
+.grid_item:nth-child(2) {
+	margin-bottom: 20px;
+}
+
+.item_desc {
+	width: 100%;
+	padding: 0px 50px;
+}
+
+
+
+
+////////////////////Account/////////////////////////////////////////
+
+.search_cont {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 50px;
+}
+
+.line {
+	width: 100%;
+	height: 1px;
+	// border: 1px solid #eee;
+	margin: 100px 0;
+}
+
+ul {
+	padding-inline-start: 0px;
+	margin: 0;
+}
+
+.account_cont {
+	width: 100%;
+	height: 180px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	border-bottom: 4px solid lightgray;
+	border-top: 1px solid #ccc;
+}
+
+.account_check {
+	width: 10%;
+}
+
+.account_id {
+	width: 20%;
+}
+
+.account_name {
+	width: 20%;
+}
+
+.account_date {
+	width: 30%;
+}
+
+.account_btn {
+	width: 20%;
+}
+
+.account_edit_btn {
+	width: 180px;
+	height: 60px;
+	border: 0;
+	background-color: #F5F6F9;
+	border-radius: 15px;
+	font-size: 35px;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.account_edit_btn:hover {
+	scale: 1.1;
+}
+
+.account_data_cont {
+	width: 100%;
+	height: 135px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	font-size: 35px;
 }
