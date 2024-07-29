@@ -14,12 +14,11 @@ li {
 
 
 .mainView {
-	padding: 0px 150px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin-top: 70px;
+	margin-top: 200px;
 }
 
 .title {
@@ -90,15 +89,14 @@ li {
 }
 
 .img_box {
-	width: 450px;
-	height: 450px;
-	border: 0;
+	width: 480px;
+	height: 480px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-	border-radius: 50%;
+	border-radius: 50px;
 }
 
 .mode_img:hover {
@@ -301,6 +299,101 @@ li {
 		transform: scaleY(2);
 	}
 }
+
+////////////////play animation/////////////////////
+// .mainView .circle {
+// 	width: 200px;
+// 	height: 200px;
+// 	border-radius: 50%;
+// 	border: 1px solid #f2f2f2;
+// 	box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8);
+// 	position: absolute;
+// 	right: 100px;
+// 	top: 50%;
+// 	opacity: 0.8;
+// 	animation: twinkling 5s ease-in-out infinite;
+// }
+
+// .mainView .circle:nth-child(2) {
+// 	right: 600px;
+// }
+
+// .mainView .circle:nth-child(3) {
+// 	right: 400px;
+// 	top: 60%;
+// }
+
+// .mainView .circle:nth-child(4) {
+// 	width: 350px;
+// 	height: 350px;
+// 	right: 1000px;
+// 	top: 60%;
+// }
+
+// .mainView .circle:nth-child(5) {
+// 	width: 150px;
+// 	height: 150px;
+// 	right: 100px;
+// 	top: 63%;
+// }
+
+// .mainView .circle:nth-child(6) {
+// 	width: 300px;
+// 	height: 300px;
+// 	right: 50px;
+// 	top: 20%;
+// 	z-index: -1;
+// }
+
+// .mainView .circle:nth-child(7) {
+// 	right: 600px;
+// }
+
+// .mainView .circle:nth-child(8) {
+// 	right: 600px;
+// }
+
+// .mainView .circle:nth-child(9) {
+// 	right: 600px;
+// }
+
+// .mainView .circle:nth-child(10) {
+// 	right: 600px;
+// }
+
+
+
+
+
+@keyframes twinkling {
+	0% {
+		box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8);
+		// transform: scale(1);
+	}
+
+	25% {
+		box-shadow: 0 0 25px 10px rgba(255, 255, 255, 1);
+		// transform: scale(1.1);
+	}
+
+	50% {
+		box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.6);
+		// transform: scale(1.05);
+	}
+
+	75% {
+		box-shadow: 0 0 25px 12px rgba(255, 255, 255, 1);
+		// transform: scale(1.1);
+	}
+
+	100% {
+		box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8);
+		// transform: scale(1);
+	}
+}
+
+
+////////////////////////////////////////////////////
 
 .head_title {
 	display: flex;
@@ -535,7 +628,7 @@ ul {
 
 .login_cont {
 	width: 1300px;
-	height: 550px;
+	height: 900px;
 	border-radius: 20px;
 	background-color: #4E555C;
 	position: absolute;

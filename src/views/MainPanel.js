@@ -12,6 +12,7 @@ import Login from './Login';
 const MainPanel = () => {
 	const [currentStep, setCurrentStep] = useState(0);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isAdmin, setIsAdmin] = useState(false);
 
 	const logOutBtn = () => {
 		window.localStorage.removeItem('userId')
@@ -25,7 +26,8 @@ const MainPanel = () => {
 
 	useEffect(() => {
 		const userId = window.localStorage.getItem('userId')
-		if (userId) {
+		const userPasswd = window.localStorage.getItem('userPasswd')
+		if (userId && userPasswd) {
 			setIsLoggedIn(true)
 		}
 	}, [])
@@ -46,7 +48,7 @@ const MainPanel = () => {
 			<Dashboard />
 			<div style={{ position: 'absolute', top: '60px', right: '50px' }}>
 				{/* <Button size='small' onClick={logOutBtn}>Logout</Button> */}
-				<Button size='small' onClick={() => setCurrentStep(0)}>Back</Button>
+				<Button size='small' onClick={() => setCurrentStep(0)}>Home</Button>
 				<Button size='small' onClick={() => setCurrentStep(2)}>Next</Button>
 			</div>
 		</div>,

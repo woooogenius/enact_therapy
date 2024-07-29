@@ -317,12 +317,10 @@ const AudioPlayer = () => {
     //     }
     // }
 
-    // const navigate = useNavigate();
-
 
     return (
         <Panel>
-            {/* <Image src='images/light.jpg' style={{ width: '100%', height: '100%', position: 'absolute', top: '0px', left: '0', zIndex: '-1' }} /> */}
+            <Image src='images/backimg2.jpeg' style={{ width: '100vw', height: '100vh', position: 'absolute', top: '0px', left: '0px', zIndex: '-1', opacity: 0.5 }} />
 
             {/* <Header title={'AI Sound Therapy'} /> */}
 
@@ -396,7 +394,7 @@ const AudioPlayer = () => {
                 <div className={css.img_flex}>
                     <div onClick={() => playBoth('STRESS')} className={`${css.mode_box} ${isPlaying && mode === 'STRESS' ? css.pulseAnimation : ''}`}>
                         <div className={css.img_box}>
-                            <Image src='images/stress_mode.jpg' className={css.mode_img} />
+                            <Image src='images/tree.jpg' className={css.mode_img} />
                         </div>
                         <div className={css.img_tit}>Stress Mode</div>
                     </div>
@@ -435,6 +433,17 @@ const AudioPlayer = () => {
                 </div>
 
 
+                {/* <div>
+                    <div className={css.circle}></div>
+                    <div className={css.circle}></div>
+                    <div className={css.circle}></div>
+                    <div className={css.circle}></div>
+                    <div className={css.circle}></div>
+                    <div className={css.circle}></div>
+                    <div className={css.circle}></div>
+                    <div className={css.circle}></div>
+                    <div className={css.circle}></div>
+                </div> */}
 
 
                 <div className={css.bottomBox}>
