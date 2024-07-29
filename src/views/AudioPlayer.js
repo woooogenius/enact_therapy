@@ -12,6 +12,7 @@ import Icon from '@enact/sandstone/Icon';
 import { Panel } from '@enact/sandstone/Panels';
 import Popup from '@enact/sandstone/Popup';
 import Input from '@enact/sandstone/Input';
+import VideoPlayer from '@enact/sandstone/VideoPlayer';
 
 
 const AudioPlayer = () => {
@@ -320,7 +321,14 @@ const AudioPlayer = () => {
 
     return (
         <Panel>
-            <Image src='images/backimg2.jpeg' style={{ width: '100vw', height: '100vh', position: 'absolute', top: '0px', left: '0px', zIndex: '-1', opacity: 0.5 }} />
+
+            {
+                isPlaying ?
+                    <div style={{ width: '100vw', height: '100vh', position: 'absolute', top: '0px', left: '0px', zIndex: '-1', opacity: 0.5 }}>
+                        <video src="images/background.mp4" type='video/mp4' loop muted autoPlay style={{ width: '100%', height: '100%' }} />
+                    </div> :
+                    <Image src='images/backlight.png' style={{ width: '100vw', height: '100vh', position: 'absolute', top: '0px', left: '0px', zIndex: '-1', opacity: 0.5 }} />
+            }
 
             {/* <Header title={'AI Sound Therapy'} /> */}
 
@@ -422,7 +430,7 @@ const AudioPlayer = () => {
 
                 </div>
 
-                <div className={css.bar_cont}>
+                {/* <div className={css.bar_cont}>
                     {isPlaying ? (
                         <div className={css.waveformAnimation}>
                             {[...Array(20)].map((_, i) => (
@@ -430,7 +438,7 @@ const AudioPlayer = () => {
                             ))}
                         </div>
                     ) : ''}
-                </div>
+                </div> */}
 
 
                 {/* <div>
