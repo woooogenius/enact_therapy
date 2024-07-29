@@ -50,17 +50,19 @@ const MainPanel = () => {
 			<div style={{ position: 'absolute', top: '60px', right: '50px' }}>
 				{/* <Button size='small' onClick={logOutBtn}>Logout</Button> */}
 				<Button size='small' onClick={() => setCurrentStep(0)}>Home</Button>
-				<Button size='small' onClick={() => setCurrentStep(2)}>Next</Button>
+				{userId === 'admin' ? <Button size='small' onClick={() => setCurrentStep(2)}>Next</Button> : ''}
 			</div>
 		</div>,
-		<div style={{ width: '100%', height: '100%', }}>
-			<Account />
-			<div style={{ position: 'absolute', top: '60px', right: '50px' }}>
-				{/* <Button size='small' onClick={logOutBtn}>Logout</Button> */}
-				<Button size='small' onClick={() => setCurrentStep(0)}>Home</Button>
-				<Button size='small' onClick={() => setCurrentStep(1)}>Back</Button>
-			</div>
-		</div>
+
+		userId === 'admin' ?
+			<div style={{ width: '100%', height: '100%', }}>
+				<Account />
+				<div style={{ position: 'absolute', top: '60px', right: '50px' }}>
+					{/* <Button size='small' onClick={logOutBtn}>Logout</Button> */}
+					<Button size='small' onClick={() => setCurrentStep(0)}>Home</Button>
+					<Button size='small' onClick={() => setCurrentStep(1)}>Back</Button>
+				</div>
+			</div> : null
 	];
 
 	return (
@@ -74,7 +76,7 @@ const MainPanel = () => {
 				onNextClick={() => setCurrentStep(prev => (prev + 1) % steps.length)}
 				onPrevClick={() => setCurrentStep(prev => (prev - 1 + steps.length) % steps.length)}
 				// total={isLoggedIn ? steps.length : 1}
-				total={2}
+				total={steps.length}
 
 			>
 
