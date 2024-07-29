@@ -7,7 +7,6 @@ import Image from '@enact/sandstone/Image';
 import Icon from '@enact/sandstone/Icon';
 import Popup from '@enact/sandstone/Popup';
 import TabLayout, { Tab } from '@enact/sandstone/TabLayout';
-import { useNavigate } from 'react-router-dom';
 import { Bar, Line, Pie } from "react-chartjs-2";
 import {
     Chart as ChartJS,

@@ -25,7 +25,6 @@ const App = kind({
 		return (
 			<Panels {...props}>
 				<MainPanel />
-				{/* <Login /> */}
 
 			</Panels>
 

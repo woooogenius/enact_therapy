@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import WizardPanels from '@enact/sandstone/WizardPanels';
 import Skinnable from '@enact/sandstone/Skinnable';
-import Slottable from '@enact/ui/Slottable';
 import AudioPlayer from './AudioPlayer';
 import Dashboard from './Dashboard';
 import css from '../App/App.module.less';
@@ -21,7 +20,7 @@ const MainPanel = () => {
 	}
 	const loginSuccess = () => {
 		setIsLoggedIn(true)
-		setCurrentStep(1)
+		setCurrentStep(0)
 	}
 
 	useEffect(() => {

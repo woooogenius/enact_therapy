@@ -11,7 +11,6 @@ import Image from '@enact/sandstone/Image';
 import Icon from '@enact/sandstone/Icon';
 import { Panel } from '@enact/sandstone/Panels';
 import Popup from '@enact/sandstone/Popup';
-import { useNavigate } from 'react-router-dom';
 import Input from '@enact/sandstone/Input';
 
 
@@ -330,22 +329,8 @@ const AudioPlayer = () => {
             <div className={css.head_title}>
                 <h3 className={css.head_tit}>AI Sound Therapy</h3>
 
-                {/* <div onClick={() => setShowMenuPop(true)} className={css.menu_btn}>
-                    <Icon>list</Icon>
-                </div> */}
             </div>
 
-            {/* menu popup */}
-            {/* <Popup position='center' open={showMenuPop} style={{ width: '450px', height: '450px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: '0', right: '-20px' }}>
-                    <Icon onClick={() => setShowMenuPop(false)} style={{ width: '80px', height: '80px', fontSize: '30px', cursor: 'pointer' }} size={'tiny'}>closex</Icon>
-                </div>
-                <div className={css.menu_flex}>
-                    <Button onClick={() => navigate('/')} size='small' style={{ width: '300px' }}>Home</Button>
-                    <Button onClick={() => navigate('/dashboard')} size='small' style={{ width: '300px', marginTop: '30px' }}>Dashboard</Button>
-                    <Button size='small' style={{ width: '300px', marginTop: '30px' }}>Account</Button>
-                </div>
-            </Popup> */}
 
             {/* stt popup */}
             <Popup open={showViocePop} position='center' style={{ width: '800px', height: '280px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
@@ -368,11 +353,11 @@ const AudioPlayer = () => {
 
 
             {/* volume popup */}
-            <Popup open={showVolumePop} position='center' style={{ width: '40%', height: '280px', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: '0', right: '-20px' }}>
+            <Popup open={showVolumePop} position='center' style={{ width: '40%', height: '260px', position: 'relative' }}>
+                <div style={{ position: 'absolute', top: '10px', right: '-15px' }}>
                     <Icon onClick={() => setShowVolumePop(false)} style={{ width: '80px', height: '80px', fontSize: '30px', cursor: 'pointer' }} size={'tiny'}>closex</Icon>
                 </div>
-                <div className={css.volume_pop}>
+                <div className={css.volume_pop} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} >
 
                     {/* <div className={css.volume_tit}>
                         <div onClick={() => setShowVolumePop(false)} className={css.volume_close}><Icon size='tiny'>closex</Icon></div>
