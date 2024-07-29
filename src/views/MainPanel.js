@@ -14,6 +14,8 @@ const MainPanel = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isAdmin, setIsAdmin] = useState(false);
 
+	const userId = window.localStorage.getItem('userId')
+	const userPasswd = window.localStorage.getItem('userPasswd')
 	const logOutBtn = () => {
 		window.localStorage.removeItem('userId')
 		setIsLoggedIn(false)
@@ -25,8 +27,7 @@ const MainPanel = () => {
 	}
 
 	useEffect(() => {
-		const userId = window.localStorage.getItem('userId')
-		const userPasswd = window.localStorage.getItem('userPasswd')
+
 		if (userId && userPasswd) {
 			setIsLoggedIn(true)
 		}

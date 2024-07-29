@@ -21,6 +21,10 @@ export default function Login({ loginSuccess }) {
         window.localStorage.setItem('userPasswd', inputUserPasswd);
 
         loginSuccess();
+        console.log(`input user Id : ${inputUserId}`)
+        console.log(`input user pw : ${inputUserPasswd}`)
+        console.log(`local storage id : ${window.localStorage.getItem('userId')}`)
+        console.log(`local storage pw : ${window.localStorage.getItem('userPasswd')}`)
     }
 
     return (
@@ -31,10 +35,10 @@ export default function Login({ loginSuccess }) {
                 <h4 style={{ textAlign: 'center', letterSpacing: '8px', fontSize: '60px' }}>LOGIN</h4>
 
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-                    <form style={{ display: 'flex', flexDirection: 'column' }}>
-                        <Input type="text" size="small" style={{ width: '600px' }} placeholder="아이디 입력" onChange={(e) => setInputUserId(e.target)} />
-                        <Input type="text" size="small" style={{ width: '600px', marginTop: '10px' }} placeholder="패스워드 입력" onChange={(e) => setInputUserPasswd(e.target)} />
-                    </form>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <Input type="text" size="small" style={{ width: '600px' }} placeholder="아이디 입력" title="아이디 입력" subtitle='관리자계정 = admin' onChange={(e) => setInputUserId(e.value)} />
+                        <Input type="password" size="small" style={{ width: '600px', marginTop: '10px' }} title="패스워드 입력" placeholder="패스워드 입력" onChange={(e) => setInputUserPasswd(e.value)} onComplete={submitUserId} />
+                    </div>
 
                     <Button size="small" style={{ marginTop: '20px' }} onClick={submitUserId}>로그인</Button>
 

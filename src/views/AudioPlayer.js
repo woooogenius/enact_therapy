@@ -328,7 +328,7 @@ const AudioPlayer = () => {
                 <h3 className={css.head_tit}>AI Sound Therapy</h3>
 
             </div>
-
+            <span>{window.localStorage.getItem('userId')}</span>
 
             {/* stt popup */}
             <Popup open={showViocePop} position='center' style={{ width: '800px', height: '280px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
