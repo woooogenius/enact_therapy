@@ -407,7 +407,6 @@ const AudioPlayer = () => {
             </Popup>
 
 
-
             <div className={css.mainView}>
                 <div className={css.img_flex}>
                     <div onClick={() => playBoth('STRESS')} className={`${css.mode_box} ${isPlaying && mode === 'STRESS' ? css.pulseAnimation : ''}`}>
